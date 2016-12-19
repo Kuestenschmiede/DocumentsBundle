@@ -12,7 +12,7 @@
 /**
  * Variables
  */
-$strFolder = 'con4gis_print';
+$strFolder = 'con4gis_documents';
 
 
 /**
@@ -20,7 +20,7 @@ $strFolder = 'con4gis_print';
  */
 ClassLoader::addNamespaces(array
 (
-	'\c4g\projects'
+	'\c4g\documents'
 ));
 
 
@@ -30,12 +30,12 @@ ClassLoader::addNamespaces(array
 ClassLoader::addClasses(array
 (
     // PDF-Erzeugugn
-    'c4g\projects\PdfDocument'          => "system/modules/$strFolder/classes/pdf/PdfDocument.php",
-    'c4g\projects\PdfGeneratorDomPdf'   => "system/modules/$strFolder/classes/pdf/PdfGeneratorDomPdf.php",
-    'c4g\projects\PdfGeneratorGeneric'  => "system/modules/$strFolder/classes/pdf/PdfGeneratorGeneric.php",
+    'c4g\documents\PdfDocument'         => "system/modules/$strFolder/classes/pdf/PdfDocument.php",
+    'c4g\documents\PdfGeneratorDomPdf'  => "system/modules/$strFolder/classes/pdf/PdfGeneratorDomPdf.php",
+    'c4g\documents\PdfGeneratorGeneric' => "system/modules/$strFolder/classes/pdf/PdfGeneratorGeneric.php",
 
     // Stack
-    'c4g\projects\PdfStack'             => "system/modules/$strFolder/classes/stack/PdfStack.php"
+    'c4g\documents\PdfStack'            => "system/modules/$strFolder/classes/stack/PdfStack.php"
 ));
 
 
