@@ -36,7 +36,7 @@ class PdfGeneratorDomPdf extends PdfGeneratorGeneric
         }
 
         if(isset($GLOBALS['c4g']['projects']['pdf']['dompdf']['defaultfilename'])) {
-            $this->getFilename($GLOBALS['c4g']['projects']['pdf']['dompdf']['defaultfilename']);
+            $this->setFilename($GLOBALS['c4g']['projects']['pdf']['dompdf']['defaultfilename']);
         }
     }
 
