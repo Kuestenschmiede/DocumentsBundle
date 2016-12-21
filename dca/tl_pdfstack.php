@@ -153,9 +153,9 @@ $GLOBALS['TL_DCA'][$strName] = array
 		(
 			'sql'                     => "int(10) unsigned NOT NULL default '0'"
 		),
-		'data' => array
-		(
-			'sql'                     => "text() NOT NULL"
-		)
+        'data' => array
+        (
+            'sql'                     => "text() NOT NULL"
+        )
 	)
 );

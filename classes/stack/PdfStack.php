@@ -27,18 +27,6 @@ class PdfStack extends \c4g\core\StackDatabase
 
 
     /**
-     * Fügt einen Auftrag dem Stack für die Pdf-Erzeugung hinzu.
-     * @param $name
-     * @param $data
-     */
-    public function pushPdf($name, $data)
-    {
-        $item = array('name' => $name, 'data' => $data);
-        parent::push($item);
-    }
-
-
-    /**
      * Liest alle Datensätze des Stacks aus, ohne ihn zu verändern.
      * @return array
      */
@@ -53,7 +41,7 @@ class PdfStack extends \c4g\core\StackDatabase
             if (is_array($data) && count($data)) {
                 for ($i = 0; $i < count($data); $i++) {
                     if (isset($data[$i]['data']) && is_string($data[$i]['data'])) {
-                        $data[$i]['data'] = deserialize($data[$i]['data'], true);
+                        $data[$i] = deserialize($data[$i]['data'], true);
                     }
                 }
 
@@ -66,14 +54,26 @@ class PdfStack extends \c4g\core\StackDatabase
 
 
     /**
+     * Fügt einen Auftrag dem Stack für die Pdf-Erzeugung hinzu.
+     * @param $name
+     * @param $data
+     *
+    public function pushPdf($data)
+    {
+        parent::push($data);
+    }
+
+
+    /**
      * Gibt den obersten Eintrag des Stacks zurück.
      * @return array|mixed
      */
     public function pop()
     {
         $data = parent::pop();
+
         if (isset($data['data']) && is_string($data['data'])) {
-            $data['data'] = deserialize($data['data'], true);
+            $data = deserialize($data['data'], true);
         }
 
         return $data;
