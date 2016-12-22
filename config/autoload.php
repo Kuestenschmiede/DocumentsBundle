@@ -36,7 +36,8 @@ ClassLoader::addClasses(array
 
     // Stack
     'c4g\documents\PdfManager'          => "system/modules/$strFolder/classes/stack/PdfManager.php",
-    'c4g\documents\PdfStack'            => "system/modules/$strFolder/classes/stack/PdfStack.php"
+    'c4g\documents\PdfStack'            => "system/modules/$strFolder/classes/stack/PdfStack.php",
+    'c4g\documents\PdfStackWorker'      => "system/modules/$strFolder/classes/stack/PdfStackWorker.php"
 ));
 
 

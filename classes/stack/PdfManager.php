@@ -126,7 +126,7 @@ class PdfManager
     {
         $this->resetData();
         $this->data = $this->pdfStack->pop();
-        return (is_array($this->data));
+        return (is_array($this->data) && count($this->data));
     }
 
 

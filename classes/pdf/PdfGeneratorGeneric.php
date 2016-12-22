@@ -192,12 +192,27 @@ abstract class PdfGeneratorGeneric
      * Speichert die Daten auf der Festplatte.
      * @param $pdfstring
      */
-    protected function saveFile($pdfstring)
+    protected function saveFile($pdfstring, $suffix = '.pdf')
     {
+        $i          = 1;
         $path       = $this->getPath();
         $filename   = $path . $this->getFilename();
+        $filename   = str_replace($suffix, '', $filename);
         $this->mkDir($path);
-        file_put_contents($filename, $pdfstring);
+
+        if (is_file($filename)) {
+            while (is_file($filename . '_' . str_pad($i, 3 ,'0', STR_PAD_LEFT) . $suffix)) {
+                $i++;
+
+                if ($i > 100) {
+                    break;
+                }
+            }
+
+            $filename .= '_' . str_pad($i, 3 ,'0', STR_PAD_LEFT);
+        }
+
+        file_put_contents($filename . $suffix, $pdfstring);
     }
 
 
