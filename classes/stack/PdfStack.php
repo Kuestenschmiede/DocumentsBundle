@@ -54,17 +54,6 @@ class PdfStack extends \c4g\core\StackDatabase
 
 
     /**
-     * Fügt einen Auftrag dem Stack für die Pdf-Erzeugung hinzu.
-     * @param $name
-     * @param $data
-     *
-    public function pushPdf($data)
-    {
-        parent::push($data);
-    }
-
-
-    /**
      * Gibt den obersten Eintrag des Stacks zurück.
      * @return array|mixed
      */
