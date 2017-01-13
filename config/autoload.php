@@ -1,14 +1,15 @@
 <?php
 /**
- * @package     con4gis_print
- * @filesource  autoload.php
- * @version     1.0.0
- * @since       14.12.16 - 16:50
- * @author      Patrick Froch <info@easySolutionsIT.de>
- * @link        http://easySolutionsIT.de
- * @copyright   e@sy Solutions IT 2016
- * @license     EULA
+ * con4gis - the gis-kit
+ *
+ * @version   php 5
+ * @package   con4gis_documents
+ * @author    con4gis contributors (see "authors.txt")
+ * @license   GNU/LGPL http://opensource.org/licenses/lgpl-3.0.html
+ * @copyright Küstenschmiede GmbH Software & Design 2017
+ * @link      https://www.kuestenschmiede.de
  */
+
 /**
  * Variables
  */
