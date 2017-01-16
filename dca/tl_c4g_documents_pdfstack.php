@@ -1,40 +1,18 @@
 <?php
 
 /**
- * Contao Open Source CMS
- * Copyright (C) 2005-2011 Leo Feyer
- *
- * Formerly known as TYPOlight Open Source CMS.
- *
- * This program is free software: you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation, either
- * version 3 of the License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public
- * License along with this program. If not, please visit the Free
- * Software Foundation website at <http://www.gnu.org/licenses/>.
- *
- *
- * @package     eden
- * @filesource  tl_pdfstack.php
- * @version     1.0.0
- * @since       16.12.16 - 19:38
- * @author      Patrick Froch <info@easySolutionsIT.de>
- * @link        http://easySolutionsIT.de
- * @copyright   e@sy Solutions IT 2016
- * @license     EULA
+ * @version   php 5
+ * @package   con4gis_documents
+ * @author    con4gis contributors (see "authors.txt")
+ * @license   GNU/LGPL http://opensource.org/licenses/lgpl-3.0.html
+ * @copyright Küstenschmiede GmbH Software & Design 2017
+ * @link      https://www.kuestenschmiede.de
  */
 
 /**
  * Set Tablename
  */
-$strName = 'tl_pdfstack';
+$strName = 'tl_c4g_documents_pdfstack';
 
 
 /**
@@ -151,11 +129,11 @@ $GLOBALS['TL_DCA'][$strName] = array
 		),
 		'tstamp' => array
 		(
-			'sql'                     => "int(10) unsigned NOT NULL default '0'"
+            'sql'                     => "int(10) unsigned NOT NULL default '0'"
 		),
         'data' => array
         (
-            'sql'                     => "text() NOT NULL"
+            'sql'                     => "text NOT NULL"
         )
 	)
 );
