@@ -15,7 +15,7 @@ namespace c4g\documents;
  * Class PdfStack
  * @package c4g\documents
  */
-class PdfStack extends \c4g\core\StackDatabase
+class PdfStack extends \c4g\Core\StackDatabase
 {
 
 
