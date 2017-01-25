@@ -59,8 +59,10 @@ class PdfGeneratorDomPdf extends PdfGeneratorGeneric
      */
     protected function generateOutput()
     {
-        $dompdf = $this->generate();
-        $dompdf->stream();
+        $filename   = $this->getFilename();
+        $filename   = str_replace('.pdf', '', $filename);   // Wird con dompdf automatisch gesetzt!
+        $dompdf     = $this->generate();
+        $dompdf->stream($filename, $this->getOptions());
     }
 
 

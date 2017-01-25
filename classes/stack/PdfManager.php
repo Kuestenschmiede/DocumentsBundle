@@ -11,6 +11,10 @@
  */
 namespace c4g\documents;
 
+/**
+ * Class PdfManager
+ * @package c4g\documents
+ */
 class PdfManager
 {
 

@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="<?php echo TL_ROOT; ?>/files/print.css">
 <div class="<?php echo $this->class; ?> block"<?php echo $this->cssID; ?><?php if ($this->style): ?> style="<?php echo $this->style; ?>"<?php endif; ?>>
 
     <?php if ($this->headline): ?>
@@ -12,7 +13,7 @@
 
     <?php for($i=0; $i < 5; $i++): ?>
         <p style="margin-top: 120px; margin-left: 50px;">
-            <img src="share/bild.jpg">
+            <img src="<?php echo TL_ROOT; ?>/files/bild.jpg">
         </p>
     <?php endfor; ?>
 </div>
