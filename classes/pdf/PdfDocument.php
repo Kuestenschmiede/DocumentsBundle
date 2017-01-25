@@ -213,5 +213,6 @@ class PdfDocument
         $template->setData($data);
         $html       = $template->parse();
         $this->pdf->setHtml($html);
+        $this->pdf->setOptions($this->getData());
     }
 }

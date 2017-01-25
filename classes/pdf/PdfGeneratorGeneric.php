@@ -194,6 +194,18 @@ abstract class PdfGeneratorGeneric
      */
     protected function saveFile($pdfstring, $suffix = '.pdf')
     {
+        $filename = $this->generateFilename($suffix);
+        file_put_contents($filename, $pdfstring);
+    }
+
+
+    /**
+     * Erzeugt einen gültigen Dateinamen.
+     * @param string $suffix
+     * @return mixed|string
+     */
+    protected function generateFilename($suffix = '.pdf')
+    {
         $i          = 1;
         $path       = $this->getPath();
         $filename   = $path . $this->getFilename();
@@ -212,9 +224,8 @@ abstract class PdfGeneratorGeneric
             $filename .= '_' . str_pad($i, 3 ,'0', STR_PAD_LEFT);
         }
 
-        file_put_contents($filename . $suffix, $pdfstring);
+        return $filename;
     }
-
 
     /**
      * Wrapper für die Erzeugung eines PDFs, dass direkt an den Browser gesendet werden soll.
