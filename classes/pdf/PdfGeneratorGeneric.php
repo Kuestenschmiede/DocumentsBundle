@@ -153,7 +153,7 @@ abstract class PdfGeneratorGeneric
      * Gibt den Speichertort für das Pdf zurück (inkl. Pfad und Dateierweiterung).
      * @param $file
      */
-    public function setFilename($file)
+    public function setFilename($file, $suffix = '.pdf')
     {
         $file = \Contao\InsertTags::replaceInsertTags($file, false);
         $file = (substr($file, 0, 1) != DIRECTORY_SEPARATOR) ? DIRECTORY_SEPARATOR . $file : $file;
@@ -224,7 +224,7 @@ abstract class PdfGeneratorGeneric
             $filename .= '_' . str_pad($i, 3 ,'0', STR_PAD_LEFT);
         }
 
-        return $filename;
+        return $filename . $suffix;
     }
 
     /**
