@@ -9,11 +9,13 @@
  * @copyright Küstenschmiede GmbH Software & Design 2017
  * @link      https://www.kuestenschmiede.de
  */
-namespace c4g\documents;
+namespace con4gis\DocumentsBundle\Classes\Pdf;
+
+use Dompdf\Dompdf;
 
 /**
  * Class PdfGeneratorDomPdf
- * @package c4g\documents
+ * @package con4gis\DocumentsBundle\Classes\Pdf
  */
 class PdfGeneratorDomPdf extends PdfGeneratorGeneric
 {
@@ -47,7 +49,7 @@ class PdfGeneratorDomPdf extends PdfGeneratorGeneric
      */
     protected function generate()
     {
-        $dompdf = new \Dompdf\Dompdf($this->options);
+        $dompdf = new Dompdf($this->options);
         $dompdf->loadHtml($this->html);
         $dompdf->render();
         return $dompdf;

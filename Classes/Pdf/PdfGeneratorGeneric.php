@@ -9,11 +9,13 @@
  * @copyright Küstenschmiede GmbH Software & Design 2017
  * @link      https://www.kuestenschmiede.de
  */
-namespace c4g\documents;
+namespace con4gis\DocumentsBundle\Classes\Pdf;
+
+use Contao\InsertTags;
 
 /**
  * Class PdfGeneratorGeneric
- * @package c4g\documents
+ * @package con4gis\DocumentsBundle\Classes\Pdf
  */
 abstract class PdfGeneratorGeneric
 {
@@ -151,11 +153,12 @@ abstract class PdfGeneratorGeneric
 
     /**
      * Gibt den Speichertort für das Pdf zurück (inkl. Pfad und Dateierweiterung).
-     * @param $file
+     * @param        $file
+     * @param string $suffix
      */
     public function setFilename($file, $suffix = '.pdf')
     {
-        $file = \Contao\InsertTags::replaceInsertTags($file, false);
+        $file = InsertTags::replaceInsertTags($file, false);
         $file = (substr($file, 0, 1) != DIRECTORY_SEPARATOR) ? DIRECTORY_SEPARATOR . $file : $file;
         $file = (strtolower(substr($file, strlen($file)-4, strlen($file))) != '.pdf') ? $file . '.pdf' : $file;
         $this->filename = $file;
@@ -188,9 +191,11 @@ abstract class PdfGeneratorGeneric
         }
     }
 
+
     /**
      * Speichert die Daten auf der Festplatte.
-     * @param $pdfstring
+     * @param        $pdfstring
+     * @param string $suffix
      */
     protected function saveFile($pdfstring, $suffix = '.pdf')
     {
