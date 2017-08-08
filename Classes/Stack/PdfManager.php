@@ -9,11 +9,13 @@
  * @copyright Küstenschmiede GmbH Software & Design 2017
  * @link      https://www.kuestenschmiede.de
  */
-namespace c4g\documents;
+namespace con4gis\DocumentsBundle\Classes\Stack;
+
+use con4gis\DocumentsBundle\Classes\Pdf\PdfDocument;
 
 /**
  * Class PdfManager
- * @package c4g\documents
+ * @package con4gis\DocumentsBundle\Classes\Stack
  */
 class PdfManager
 {

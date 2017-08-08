@@ -9,11 +9,13 @@
  * @copyright Küstenschmiede GmbH Software & Design 2017
  * @link      https://www.kuestenschmiede.de
  */
-namespace c4g\documents;
+namespace con4gis\DocumentsBundle\Classes\Pdf;
+
+use Contao\FrontendTemplate;
 
 /**
  * Class PdfDocument
- * @package c4g\projects
+ * @package con4gis\DocumentsBundle\Classes\Pdf
  */
 class PdfDocument
 {
@@ -128,7 +130,7 @@ class PdfDocument
     public function setTemplateName($tampleteName)
     {
         $this->templateName = $tampleteName;
-        $template           = new \Contao\FrontendTemplate($tampleteName);
+        $template           = new FrontendTemplate($tampleteName);
         $this->setTemplate($template);
     }
 
@@ -147,7 +149,7 @@ class PdfDocument
      * Setzt das Template für das PDF.
      * @param \Contao\FrontendTemplate $template
      */
-    public function setTemplate(\Contao\FrontendTemplate $template)
+    public function setTemplate(FrontendTemplate $template)
     {
         $this->template = $template;
     }

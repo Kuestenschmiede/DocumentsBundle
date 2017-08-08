@@ -9,13 +9,16 @@
  * @copyright Küstenschmiede GmbH Software & Design 2017
  * @link      https://www.kuestenschmiede.de
  */
-namespace c4g\documents;
+namespace con4gis\DocumentsBundle\Classes\Stack;
+
+use c4g\Core\StackDatabase;
+use Contao\Database;
 
 /**
  * Class PdfStack
- * @package c4g\documents
+ * @package con4gis\DocumentsBundle\Classes\Stack
  */
-class PdfStack extends \c4g\Core\StackDatabase
+class PdfStack extends StackDatabase
 {
 
 
@@ -33,7 +36,7 @@ class PdfStack extends \c4g\Core\StackDatabase
     public function getAll()
     {
         $query  = 'SELECT * FROM `' . $this->table . '` ORDER BY id ASC';
-        $result = \Contao\Database::getInstance()->execute($query);
+        $result = Database::getInstance()->execute($query);
 
         if ($result->numRows) {
             $data = $result->fetchAllAssoc();
