@@ -9,14 +9,14 @@
  * @copyright Küstenschmiede GmbH Software & Design 2017
  * @link      https://www.kuestenschmiede.de
  */
-namespace con4gis\DocumentsBundle\Classes\Stack;
+namespace con4gis\DocumentBundle\Classes\Stack;
 
 use c4g\Core\StackDatabase;
 use Contao\Database;
 
 /**
  * Class PdfStack
- * @package con4gis\DocumentsBundle\Classes\Stack
+ * @package con4gis\DocumentBundle\Classes\Stack
  */
 class PdfStack extends StackDatabase
 {

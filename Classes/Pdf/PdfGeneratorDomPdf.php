@@ -9,13 +9,13 @@
  * @copyright Küstenschmiede GmbH Software & Design 2017
  * @link      https://www.kuestenschmiede.de
  */
-namespace con4gis\DocumentsBundle\Classes\Pdf;
+namespace con4gis\DocumentBundle\Classes\Pdf;
 
 use Dompdf\Dompdf;
 
 /**
  * Class PdfGeneratorDomPdf
- * @package con4gis\DocumentsBundle\Classes\Pdf
+ * @package con4gis\DocumentBundle\Classes\Pdf
  */
 class PdfGeneratorDomPdf extends PdfGeneratorGeneric
 {
