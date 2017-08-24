@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @version   php 5
+ * @version   php 7
  * @package   con4gis_documents
  * @author    con4gis contributors (see "authors.txt")
  * @license   GNU/LGPL http://opensource.org/licenses/lgpl-3.0.html
