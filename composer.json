@@ -1,31 +1,50 @@
 {
-  "name": "con4gis/con4gis_documents",
+  "name": "con4gis/export",
+  "type": "contao-bundle",
   "description": "Generating pdf documents directly or per stack",
-  "keywords": ["con4gis", "documents", "contao", "c4g"],
-  "type": "contao-module",
-  "homepage": "https://con4gis.org",
+  "keywords": ["con4gis", "document", "contao", "c4g", "con4gisdocument", "con4gisdocumentbundle", "c4gdocument"],
   "license": "LGPL-3.0+",
-  "authors":[
+  "authors": [
     {
-      "name":"Küstenschmiede GmbH Software & Design",
-      "homepage":"https://kuestenschmiede.de"
+      "name": "Kuestenschmiede",
+      "homepage": "https://github.com/kuestenschmiede"
     }
   ],
   "require": {
+    "php": "^5.6|^7.0",
+    "symfony/framework-bundle": "^3.3",
+    "contao/core-bundle": "^4.4.2",
+    "con4gis/core": "~2.0",
     "dompdf/dompdf": "~0.7",
     "con4gis/con4gis_core": "~1.7"
   },
-  "support": {
-    "issues": "https://github.com/Kuestenschmiede/con4gis_documents/issues"
+  "conflict": {
+    "contao/core": "*",
+    "contao/manager-plugin": "<2.0 || >=3.0"
   },
   "autoload": {
-    "classmap": [""]
+    "psr-4": {
+      "con4gis\\DocumentBundle\\": ""
+    },
+    "classmap": [
+      "Resources/contao/"
+    ],
+    "exclude-from-classmap": [
+      "Resources/contao/config/",
+      "Resources/contao/dca/",
+      "Resources/contao/languages/",
+      "Resources/contao/templates/"
+    ]
+  },
+  "support": {
+    "issues": "https://github.com/Kuestenschmiede/DocumentBundle/issues"
+  },
+  "config": {
+    "preferred-install": "dist"
   },
   "extra": {
-    "contao": {
-      "sources": {
-        "": "system/modules/con4gis_documents"
-      }
+    "branch-alias": {
+      "dev-master": "1.0.x-dev"
     }
   }
 }
