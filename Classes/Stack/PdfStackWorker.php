@@ -9,7 +9,7 @@
  * @copyright Küstenschmiede GmbH Software & Design 2017
  * @link      https://www.kuestenschmiede.de
  */
-namespace con4gis\DocumentBundle\Classes\Stack;
+namespace con4gis\DocumentsBundle\Classes\Stack;
 
 class PdfStackWorker
 {
