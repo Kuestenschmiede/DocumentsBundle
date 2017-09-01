@@ -1,8 +1,8 @@
 {
-  "name": "con4gis/export",
+  "name": "con4gis/documents",
   "type": "contao-bundle",
   "description": "Generating pdf documents directly or per stack",
-  "keywords": ["con4gis", "document", "contao", "c4g", "con4gisdocument", "con4gisdocumentbundle", "c4gdocument"],
+  "keywords": ["con4gis", "document", "contao", "c4g", "con4gisdocuments", "con4gisdocumentsbundle", "c4gdocuments"],
   "license": "LGPL-3.0+",
   "authors": [
     {
@@ -24,7 +24,7 @@
   },
   "autoload": {
     "psr-4": {
-      "con4gis\\DocumentBundle\\": ""
+      "con4gis\\DocumentsBundle\\": ""
     },
     "classmap": [
       "Resources/contao/"

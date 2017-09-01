@@ -9,13 +9,13 @@
  * @copyright Küstenschmiede GmbH Software & Design 2017
  * @link      https://www.kuestenschmiede.de
  */
-namespace con4gis\DocumentBundle\Classes\Pdf;
+namespace con4gis\DocumentsBundle\Classes\Pdf;
 
 use Contao\FrontendTemplate;
 
 /**
  * Class PdfDocument
- * @package con4gis\DocumentBundle\Classes\Pdf
+ * @package con4gis\DocumentsBundle\Classes\Pdf
  */
 class PdfDocument
 {

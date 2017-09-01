@@ -7,7 +7,7 @@
  * @copyright Küstenschmiede GmbH Software & Design 2017
  * @link      https://www.kuestenschmiede.de
  */
-namespace con4gis\DocumentBundle;
+namespace con4gis\DocumentsBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
@@ -15,7 +15,7 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
  * Class con4gisQueueBundle
  * @package con4gis\QueueBundle
  */
-class con4gisDocumentBundle extends Bundle
+class con4gisDocumentsBundle extends Bundle
 {
 
 }
