@@ -17,4 +17,4 @@ $strBundle = 'con4gis/DocumentBundle';
 /**
  * Register the templates
  */
-\con4gis\CoreBundle\Classes\Helper\AutoloadHelper::loadTemplates("/src/$strBundle/");
+//\con4gis\CoreBundle\Classes\Helper\AutoloadHelper::loadTemplates("/src/$strBundle/");

@@ -3,6 +3,7 @@
 namespace con4gis\DocumentsBundle\ContaoManager;
 
 use con4gis\ApiBundle\Con4gisApiBundle;
+use con4gis\CoreBundle\con4gisCoreBundle;
 use con4gis\DocumentsBundle\con4gisDocumentsBundle;
 use Contao\CoreBundle\ContaoCoreBundle;
 use Contao\ManagerPlugin\Bundle\Config\BundleConfig;
@@ -13,7 +14,7 @@ use Contao\ManagerPlugin\Routing\RoutingPluginInterface;
 use Symfony\Component\Config\Loader\LoaderResolverInterface;
 use Symfony\Component\HttpKernel\KernelInterface;
 
-class Plugin implements RoutingPluginInterface, BundlePluginInterface
+class Plugin implements BundlePluginInterface
 {
 
     /**
