@@ -29,7 +29,6 @@ class Plugin implements BundlePluginInterface
         return [
             BundleConfig::create(con4gisDocumentsBundle::class)
                 ->setLoadAfter([con4gisCoreBundle::class])
-                ->setReplace(['Documents']),
         ];
     }
 }
