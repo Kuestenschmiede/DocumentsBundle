@@ -11,12 +11,9 @@
     }
   ],
   "require": {
-    "php": "^5.6|^7.0",
-    "symfony/framework-bundle": "^3.3",
-    "contao/core-bundle": "^4.4.2",
     "con4gis/core": "~2.0",
-    "dompdf/dompdf": "~0.7",
-    "con4gis/con4gis_core": "~1.7"
+    "dompdf/dompdf": "~0.8",
+    "con4gis/con4gis_core": "~1.9"
   },
   "conflict": {
     "contao/core": "*",
