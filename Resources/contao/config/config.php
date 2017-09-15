@@ -9,10 +9,7 @@
  * @link      https://www.kuestenschmiede.de
  */
 
-
-$GLOBALS['con4gis_documents_extension']['installed'] = true;
-$GLOBALS['con4gis_documents_extension']['version']   = '0.2.0-snapshot';
-
+$GLOBALS['con4gis']['documents']['installed'] = true;
 
 // Speicherort für die Pdfs
 $GLOBALS['c4g']['projects']['pdf']['dompdf']['defaultpath']     = 'files/pdfs';
