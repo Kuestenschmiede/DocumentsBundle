@@ -11,9 +11,8 @@
     }
   ],
   "require": {
-    "con4gis/core": "~2.0",
-    "dompdf/dompdf": "~0.8",
-    "con4gis/con4gis_core": "~1.9"
+    "con4gis/core": "^2.0",
+    "dompdf/dompdf": "~0.8"
   },
   "conflict": {
     "contao/core": "*",
