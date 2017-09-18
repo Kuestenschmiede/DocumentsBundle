@@ -11,7 +11,7 @@
  */
 namespace con4gis\DocumentsBundle\Classes\Stack;
 
-use c4g\Core\StackDatabase;
+use con4gis\CoreBundle\Resources\contao\classes\stack\StackDatabase;
 use Contao\Database;
 
 /**
