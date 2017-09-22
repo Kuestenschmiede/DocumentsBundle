@@ -2,14 +2,23 @@
   "name": "con4gis/documents",
   "type": "contao-bundle",
   "description": "Generating pdf documents directly or per stack",
-  "keywords": ["con4gis", "document", "contao", "c4g", "con4gisdocuments", "con4gisdocumentsbundle", "c4gdocuments"],
+  "keywords": ["con4gis", "documents", "contao", "c4g", "DocumentsBundle", "dompdf"],
   "license": "LGPL-3.0+",
   "authors": [
     {
-      "name": "Kuestenschmiede",
-      "homepage": "https://github.com/kuestenschmiede"
+      "name": "Kuestenschmiede GmbH Software & Design",
+      "homepage": "https://kuestenschmiede.de",
+      "role": "Operator"
+    },
+    {
+      "name": "con4gis community",
+      "homepage": "https://con4gis.org",
+      "role": "Developer"
     }
   ],
+  "support": {
+    "email": "support@con4gis.org"
+  },
   "require": {
     "con4gis/core": "^2.0",
     "dompdf/dompdf": "~0.8"
