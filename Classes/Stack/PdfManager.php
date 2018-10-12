@@ -189,4 +189,12 @@ class PdfManager
 
         return false;
     }
+
+    /**
+     * @return PdfDocument|null
+     */
+    public function getPdfDocument()
+    {
+        return $this->PdfDocument;
+    }
 }
