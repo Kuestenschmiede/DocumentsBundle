@@ -4,7 +4,7 @@
  * the gis-kit for Contao CMS.
  *
  * @package    con4gis
- * @version    6
+ * @version    7
  * @author     con4gis contributors (see "authors.txt")
  * @license    LGPL-3.0-or-later
  * @copyright  Küstenschmiede GmbH Software & Design
@@ -20,14 +20,11 @@ use Contao\InsertTags;
  */
 abstract class PdfGeneratorGeneric
 {
-
-
     /**
      * Array mit den Optionen für die PDF-Erstellung
      * @var array
      */
-    protected $options = array();
-
+    protected $options = [];
 
     /**
      * Speicherort für die PDF-Dateien
@@ -35,20 +32,17 @@ abstract class PdfGeneratorGeneric
      */
     protected $path = '';
 
-
     /**
      * Dateiname für die PDF-Datei
      * @var string
      */
     protected $filename = '';
 
-
     /**
      * HTML-Source für das PDF.
      * @var string
      */
     protected $html = '';
-
 
     /**
      * PdfGenerator constructor.
@@ -61,7 +55,6 @@ abstract class PdfGeneratorGeneric
         }
     }
 
-
     /**
      * Setzt eine Einstellung für die PDF-Erzeugung.
      * @param $name
@@ -71,7 +64,6 @@ abstract class PdfGeneratorGeneric
     {
         $this->options[$name] = $value;
     }
-
 
     /**
      * Gibt der Wert einer Einstellung zurück.
@@ -87,7 +79,6 @@ abstract class PdfGeneratorGeneric
         return null;
     }
 
-
     /**
      * Setzt ein Array als Einstellung für die PDF-Erzeugung.
      * @param array $options
@@ -99,7 +90,6 @@ abstract class PdfGeneratorGeneric
         }
     }
 
-
     /**
      * Gibt das Array mit den Einstellungen für die PDF-Erzeugung zurück.
      * @return array
@@ -108,7 +98,6 @@ abstract class PdfGeneratorGeneric
     {
         return $this->options;
     }
-
 
     /**
      * Setzt das HTML für das PDF.
@@ -119,7 +108,6 @@ abstract class PdfGeneratorGeneric
         $this->html = $html;
     }
 
-
     /**
      * Gibt das HTML zurück.
      * @return string
@@ -129,18 +117,16 @@ abstract class PdfGeneratorGeneric
         return $this->html;
     }
 
-
     /**
      * Setzt den Pfad für das Speichern der PDF-Dateien.
      * @param $path
      */
     public function setPath($path)
     {
-        $path       = (substr($path, 0, 1) != DIRECTORY_SEPARATOR) ? DIRECTORY_SEPARATOR . $path : $path;
-        $path       = (substr($path, 0, strlen(TL_ROOT)) != TL_ROOT) ? TL_ROOT . $path : $path;
+        $path = (substr($path, 0, 1) != DIRECTORY_SEPARATOR) ? DIRECTORY_SEPARATOR . $path : $path;
+        $path = (substr($path, 0, strlen(TL_ROOT)) != TL_ROOT) ? TL_ROOT . $path : $path;
         $this->path = $path;
     }
-
 
     /**
      * Gibt den Pfaad für das Speichern der PDF-Dateien zurück.
@@ -151,7 +137,6 @@ abstract class PdfGeneratorGeneric
         return $this->path;
     }
 
-
     /**
      * Gibt den Speichertort für das Pdf zurück (inkl. Pfad und Dateierweiterung).
      * @param        $file
@@ -161,10 +146,9 @@ abstract class PdfGeneratorGeneric
     {
         $file = InsertTags::replaceInsertTags($file, false);
         $file = (substr($file, 0, 1) != DIRECTORY_SEPARATOR) ? DIRECTORY_SEPARATOR . $file : $file;
-        $file = (strtolower(substr($file, strlen($file)-4, strlen($file))) != '.pdf') ? $file . '.pdf' : $file;
+        $file = (strtolower(substr($file, strlen($file) - 4, strlen($file))) != '.pdf') ? $file . '.pdf' : $file;
         $this->filename = $file;
     }
-
 
     /**
      * Gibt den geparsten Dateinamen für das Pdf zurück.
@@ -174,7 +158,6 @@ abstract class PdfGeneratorGeneric
     {
         return $this->filename;
     }
-
 
     /**
      * Erstellt den Speicherordner für die Pdfs, falls nötig.
@@ -192,7 +175,6 @@ abstract class PdfGeneratorGeneric
         }
     }
 
-
     /**
      * Speichert die Daten auf der Festplatte.
      * @param        $pdfstring
@@ -204,7 +186,6 @@ abstract class PdfGeneratorGeneric
         file_put_contents($filename, $pdfstring);
     }
 
-
     /**
      * Erzeugt einen gültigen Dateinamen.
      * @param string $suffix
@@ -212,14 +193,14 @@ abstract class PdfGeneratorGeneric
      */
     protected function generateFilename($suffix = '.pdf')
     {
-        $i          = 1;
-        $path       = $this->getPath();
-        $filename   = $path . $this->getFilename();
-        $filename   = str_replace($suffix, '', $filename);
+        $i = 1;
+        $path = $this->getPath();
+        $filename = $path . $this->getFilename();
+        $filename = str_replace($suffix, '', $filename);
         $this->mkDir($path);
 
         if (is_file($filename)) {
-            while (is_file($filename . '_' . str_pad($i, 3 ,'0', STR_PAD_LEFT) . $suffix)) {
+            while (is_file($filename . '_' . str_pad($i, 3, '0', STR_PAD_LEFT) . $suffix)) {
                 $i++;
 
                 if ($i > 100) {
@@ -227,7 +208,7 @@ abstract class PdfGeneratorGeneric
                 }
             }
 
-            $filename .= '_' . str_pad($i, 3 ,'0', STR_PAD_LEFT);
+            $filename .= '_' . str_pad($i, 3, '0', STR_PAD_LEFT);
         }
 
         return $filename . $suffix;
@@ -241,7 +222,6 @@ abstract class PdfGeneratorGeneric
     {
         $this->generateOutput();
     }
-
 
     /**
      * Wrapper für die Erzeugung einer PDF-Datei.
@@ -257,7 +237,6 @@ abstract class PdfGeneratorGeneric
      * Erzeugt ein PDF über den PDF-Generator und sendet es an der Browser.
      */
     abstract protected function generateOutput();
-
 
     /**
      * Muss in der Kindklasse definiert werden.

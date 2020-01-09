@@ -4,7 +4,7 @@
  * the gis-kit for Contao CMS.
  *
  * @package    con4gis
- * @version    6
+ * @version    7
  * @author     con4gis contributors (see "authors.txt")
  * @license    LGPL-3.0-or-later
  * @copyright  Küstenschmiede GmbH Software & Design
@@ -21,14 +21,11 @@ use Contao\Database;
  */
 class PdfStack extends StackDatabase
 {
-
-
     /**
      * Name der Tabelle für den Stack für die Pdf-Erzeugung.
      * @var string
      */
     protected $table = 'tl_c4g_documents_pdfstack';
-
 
     /**
      * Liest alle Datensätze des Stacks aus, ohne ihn zu verändern.
@@ -36,7 +33,7 @@ class PdfStack extends StackDatabase
      */
     public function getAll()
     {
-        $query  = 'SELECT * FROM `' . $this->table . '` ORDER BY id ASC';
+        $query = 'SELECT * FROM `' . $this->table . '` ORDER BY id ASC';
         $result = Database::getInstance()->execute($query);
 
         if ($result->numRows) {
@@ -53,9 +50,8 @@ class PdfStack extends StackDatabase
             }
         }
 
-        return array();
+        return [];
     }
-
 
     /**
      * Gibt den obersten Eintrag des Stacks zurück.

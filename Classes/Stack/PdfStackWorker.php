@@ -4,7 +4,7 @@
  * the gis-kit for Contao CMS.
  *
  * @package    con4gis
- * @version    6
+ * @version    7
  * @author     con4gis contributors (see "authors.txt")
  * @license    LGPL-3.0-or-later
  * @copyright  Küstenschmiede GmbH Software & Design
@@ -14,21 +14,17 @@ namespace con4gis\DocumentsBundle\Classes\Stack;
 
 class PdfStackWorker
 {
-
-
     /**
      * Instanz der PdfManagers
      * @var PdfManager|null
      */
     public $pdfManager = null;
 
-
     /**
      * Maximale Anzahl der auszuführenden Jobs pro Aufruf.
      * @var int
      */
     public $maxCount = 0;
-
 
     /**
      * PdfStackWorker constructor.
@@ -47,7 +43,6 @@ class PdfStackWorker
         }
     }
 
-
     /**
      * @return int
      */
@@ -56,7 +51,6 @@ class PdfStackWorker
         return $this->maxCount;
     }
 
-
     /**
      * @param int $maxCount
      */
@@ -64,7 +58,6 @@ class PdfStackWorker
     {
         $this->maxCount = $maxCount;
     }
-
 
     /**
      * Ruft die Verarbeitung des PdfStacks auf.
@@ -77,7 +70,7 @@ class PdfStackWorker
             $this->pdfManager->save();
             $i++;
 
-            if($i >= $this->maxCount) {
+            if ($i >= $this->maxCount) {
                 break;
             }
         }

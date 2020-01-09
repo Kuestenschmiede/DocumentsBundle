@@ -4,7 +4,7 @@
  * the gis-kit for Contao CMS.
  *
  * @package    con4gis
- * @version    6
+ * @version    7
  * @author     con4gis contributors (see "authors.txt")
  * @license    LGPL-3.0-or-later
  * @copyright  Küstenschmiede GmbH Software & Design
@@ -20,14 +20,11 @@ use con4gis\DocumentsBundle\Classes\Pdf\PdfDocument;
  */
 class PdfManager
 {
-
-
     /**
      * Instanz von PdfStack
      * @var PdfStack|null
      */
     protected $pdfStack = null;
-
 
     /**
      * Instanz von PdfDocument
@@ -35,20 +32,17 @@ class PdfManager
      */
     protected $PdfDocument = null;
 
-
     /**
      * Array mit den Daten des aktuellen Datensatzes
      * @var array
      */
-    protected $data = array();
-
+    protected $data = [];
 
     /**
      * Felder, die im Array $this->data gesetzt sein müssen, damit ein PDF erstellt werden kann.
      * @var array
      */
-    protected $checkField = array('template', 'filename', 'filepath');
-
+    protected $checkField = ['template', 'filename', 'filepath'];
 
     /**
      * PdfStackManager constructor.
@@ -70,7 +64,6 @@ class PdfManager
         }
     }
 
-
     /**
      * Setzt eine Einstellung für das PDF.
      * @param $key
@@ -80,7 +73,6 @@ class PdfManager
     {
         $this->data[$key] = $value;
     }
-
 
     /**
      * Gibt einen Einstellung aus den Daten des PDFs zurück.
@@ -96,7 +88,6 @@ class PdfManager
         return null;
     }
 
-
     /**
      * Ersetzt das Daten-Array.
      * @param $data
@@ -106,15 +97,13 @@ class PdfManager
         $this->data = $data;
     }
 
-
     /**
      * Setzt das Daten-Array zurück.
      */
     public function resetData()
     {
-        $this->data = array();
+        $this->data = [];
     }
-
 
     /**
      * Legt die aktuellen Daten auf den Stack.
@@ -124,7 +113,6 @@ class PdfManager
         $this->pdfStack->push($this->data);
     }
 
-
     /**
      * Ruft einen Datensatz vom Stack ab.
      * @return bool
@@ -133,9 +121,9 @@ class PdfManager
     {
         $this->resetData();
         $this->data = $this->pdfStack->pop();
+
         return (is_array($this->data) && count($this->data));
     }
-
 
     /**
      * Erzeugt und Speichert ein PDF.
@@ -146,7 +134,6 @@ class PdfManager
         $this->PdfDocument->save();
     }
 
-
     /**
      * Erzeugt ein PDF und gibt es aus.
      */
@@ -155,7 +142,6 @@ class PdfManager
         $this->processData();
         $this->PdfDocument->output();
     }
-
 
     /**
      * Setzt die Daten für das PDF.
@@ -169,7 +155,6 @@ class PdfManager
             $this->PdfDocument->setData($this->data);
         }
     }
-
 
     /**
      * Prüft, ob die erforderlichen Daten für das Erstellen eines PDFs gesetzt sind.

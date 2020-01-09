@@ -4,7 +4,7 @@
  * the gis-kit for Contao CMS.
  *
  * @package    con4gis
- * @version    6
+ * @version    7
  * @author     con4gis contributors (see "authors.txt")
  * @license    LGPL-3.0-or-later
  * @copyright  Küstenschmiede GmbH Software & Design
@@ -20,14 +20,11 @@ use Contao\FrontendTemplate;
  */
 class PdfDocument
 {
-
-
     /**
      * Instanz der PDF-Generators
      * @var PdfGeneratorGeneric|null
      */
     protected $pdf = null;
-
 
     /**
      * Name des Templates
@@ -35,20 +32,17 @@ class PdfDocument
      */
     protected $templateName = '';
 
-
     /**
      * Instanz des Telpmates
      * @var null
      */
     protected $template = null;
 
-
     /**
      * Daten für das Template
      * @var array
      */
-    protected $data = array();
-
+    protected $data = [];
 
     /**
      * PdfDocument constructor.
@@ -63,7 +57,6 @@ class PdfDocument
         }
     }
 
-
     /**
      * Setzt die Optionen für die PDF-Erzeugung.
      * @param array $options
@@ -72,7 +65,6 @@ class PdfDocument
     {
         $this->pdf->setOptions($options);
     }
-
 
     /**
      * Gibt die Optionen der PDF-Erzeugung zurück.
@@ -83,7 +75,6 @@ class PdfDocument
         return $this->pdf->getOptions();
     }
 
-
     /**
      * Setzt den Pfad für die Speicherung des PDFs.
      * @param $path
@@ -92,7 +83,6 @@ class PdfDocument
     {
         $this->pdf->setPath($path);
     }
-
 
     /**
      * Gibt den Pfad für die Speicherung des PDFs zurück.
@@ -103,7 +93,6 @@ class PdfDocument
         return $this->pdf->getPath();
     }
 
-
     /**
      * Setzt das Schema füe den Dateinamen des PDFs.
      * @param $filename
@@ -112,7 +101,6 @@ class PdfDocument
     {
         $this->pdf->setFilename($filename);
     }
-
 
     /**
      * Gibt den geparsten Dateinamen zurück.
@@ -123,7 +111,6 @@ class PdfDocument
         return $this->pdf->getFilename();
     }
 
-
     /**
      * Setzt den Namen des Templates für das PDF.
      * @param $tampleteName
@@ -131,10 +118,9 @@ class PdfDocument
     public function setTemplateName($tampleteName)
     {
         $this->templateName = $tampleteName;
-        $template           = new FrontendTemplate($tampleteName);
+        $template = new FrontendTemplate($tampleteName);
         $this->setTemplate($template);
     }
-
 
     /**
      * Gibt den Namen des Templates des PDFs zurück.
@@ -145,7 +131,6 @@ class PdfDocument
         return $this->templateName;
     }
 
-
     /**
      * Setzt das Template für das PDF.
      * @param \Contao\FrontendTemplate $template
@@ -154,7 +139,6 @@ class PdfDocument
     {
         $this->template = $template;
     }
-
 
     /**
      * Gibt das Template des PDFs zurück.
@@ -165,7 +149,6 @@ class PdfDocument
         return $this->template;
     }
 
-
     /**
      * Setzt die Daten für das Template.
      * @param array $data
@@ -174,7 +157,6 @@ class PdfDocument
     {
         $this->data = $data;
     }
-
 
     /**
      * Gibt die Daten für des Templates zurück.
@@ -185,7 +167,6 @@ class PdfDocument
         return $this->data;
     }
 
-
     /**
      * Bietet das PDF zum Speichern an.
      */
@@ -194,7 +175,6 @@ class PdfDocument
         $this->generate();
         $this->pdf->save();
     }
-
 
     /**
      * Sendet das PDF an den Browser.
@@ -205,16 +185,15 @@ class PdfDocument
         $this->pdf->output();
     }
 
-
     /**
      * Erzeugt aus dem Template und den Daten das HTML für das PDF.
      */
     protected function generate()
     {
-        $template   = $this->getTemplate();
-        $data       = $this->getData();
+        $template = $this->getTemplate();
+        $data = $this->getData();
         $template->setData($data);
-        $html       = $template->parse();
+        $html = $template->parse();
         $this->pdf->setHtml($html);
         $this->pdf->setOptions($this->getData());
     }
