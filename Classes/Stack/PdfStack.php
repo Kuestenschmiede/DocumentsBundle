@@ -12,7 +12,7 @@
  */
 namespace con4gis\DocumentsBundle\Classes\Stack;
 
-use con4gis\CoreBundle\Resources\contao\classes\stack\StackDatabase;
+use con4gis\CoreBundle\Classes\Stack\StackDatabase;
 use Contao\Database;
 
 /**
