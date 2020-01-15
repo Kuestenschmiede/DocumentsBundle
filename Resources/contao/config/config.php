@@ -11,8 +11,6 @@
  * @link       https://www.con4gis.org
  */
 
-$GLOBALS['con4gis']['documents']['installed'] = true;
-
 // Speicherort für die Pdfs
 $GLOBALS['c4g']['projects']['pdf']['dompdf']['defaultpath']     = 'files/pdfs';
 
