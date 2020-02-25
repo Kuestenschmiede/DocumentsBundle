@@ -19,11 +19,11 @@
   ],
   "support": {
     "email": "support@con4gis.org",
-    "issues": "https://github.com/Kuestenschmiede/DocumentBundle/issues"
+    "issues": "https://github.com/Kuestenschmiede/DocumentsBundle/issues"
   },
   "require": {
     "contao/core-bundle": "^4.4",
-    "con4gis/core": "^3.3",
+    "con4gis/core": "^4.0",
     "dompdf/dompdf": "~0.8"
   },
   "conflict": {
