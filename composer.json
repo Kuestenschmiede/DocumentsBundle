@@ -23,8 +23,8 @@
   },
   "require": {
     "contao/core-bundle": "^4.4",
-    "con4gis/core": "^4.0",
-    "dompdf/dompdf": "~0.8"
+    "con4gis/core": "^4.1",
+    "dompdf/dompdf": "^1.0"
   },
   "conflict": {
     "contao/core": "*",
