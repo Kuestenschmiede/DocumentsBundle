@@ -22,7 +22,7 @@
     "issues": "https://github.com/Kuestenschmiede/DocumentsBundle/issues"
   },
   "require": {
-    "contao/core-bundle": "^4.4",
+    "contao/core-bundle": "^4.9",
     "con4gis/core": "^4.2",
     "dompdf/dompdf": "^1.0"
   },
