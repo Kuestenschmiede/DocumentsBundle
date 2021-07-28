@@ -46,12 +46,12 @@ class PdfDocument
      * PdfDocument constructor.
      * @param PdfGeneratorGeneric $pdf
      */
-    public function __construct(PdfGeneratorGeneric $pdf = null)
+    public function __construct(PdfGeneratorGeneric $pdf = null, $pdfProtected = '')
     {
         if ($pdf !== null) {
             $this->pdf = $pdf;
         } else {
-            $this->pdf = new PdfGeneratorDomPdf();
+            $this->pdf = new PdfGeneratorDomPdf(null, $pdfProtected);
         }
     }
 

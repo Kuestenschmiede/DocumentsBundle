@@ -18,12 +18,14 @@ use Dompdf\Dompdf;
  */
 class PdfGeneratorDomPdf extends PdfGeneratorGeneric
 {
+    private $pdfProtected = '';
     /**
      * PdfGeneratorDomPdf constructor.
      * @param null $html
      */
-    public function __construct($html = null)
+    public function __construct($html = null, $pdfProtected = '')
     {
+        $this->pdfProtected = $pdfProtected;
         parent::__construct($html);
 
         if (isset($GLOBALS['c4g']['projects']['pdf']['dompdf']['deafultoptions'])) {
@@ -48,6 +50,11 @@ class PdfGeneratorDomPdf extends PdfGeneratorGeneric
         $dompdf = new Dompdf($this->options);
         $dompdf->loadHtml($this->html);
         $dompdf->render();
+
+        if ($this->pdfProtected) {
+            $dompdf->get_canvas()->get_cpdf()->setEncryption($this->pdfProtected, NULL, array('print'));
+            $dompdf->get_canvas()->get_cpdf()->encrypted=true;
+        }
 
         return $dompdf;
     }
