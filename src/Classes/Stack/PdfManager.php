@@ -47,7 +47,7 @@ class PdfManager
      * @param PdfStack|null    $pdfStack
      * @param PdfDocument|null $pdfDocument
      */
-    public function __construct(PdfStack $pdfStack = null, PdfDocument $pdfDocument = null, $pdfProtected = "")
+    public function __construct(PdfStack $pdfStack = null, PdfDocument $pdfDocument = null, $pdfProtected = '')
     {
         if ($pdfStack) {
             $this->pdfStack = $pdfStack;

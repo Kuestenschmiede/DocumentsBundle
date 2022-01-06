@@ -52,8 +52,8 @@ class PdfGeneratorDomPdf extends PdfGeneratorGeneric
         $dompdf->render();
 
         if ($this->pdfProtected) {
-            $dompdf->get_canvas()->get_cpdf()->setEncryption($this->pdfProtected, NULL, array('print'));
-            $dompdf->get_canvas()->get_cpdf()->encrypted=true;
+            $dompdf->get_canvas()->get_cpdf()->setEncryption($this->pdfProtected, null, ['print']);
+            $dompdf->get_canvas()->get_cpdf()->encrypted = true;
         }
 
         return $dompdf;
