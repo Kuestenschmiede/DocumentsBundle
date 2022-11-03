@@ -11,6 +11,7 @@
 namespace con4gis\DocumentsBundle\Classes\Pdf;
 
 use Contao\FrontendTemplate;
+use Contao\Template;
 
 /**
  * Class PdfDocument
@@ -18,35 +19,16 @@ use Contao\FrontendTemplate;
  */
 class PdfDocument
 {
-    /**
-     * Instanz der PDF-Generators
-     * @var PdfGeneratorGeneric|null
-     */
-    protected $pdf = null;
+    private ?PdfGeneratorGeneric $pdf;
+    private string $templateName = '';
+    private ?Template $template = null;
+    private array $data = [];
 
     /**
-     * Name des Templates
-     * @var string
+     * @param PdfGeneratorGeneric|null $pdf
+     * @param string $pdfProtected
      */
-    protected $templateName = '';
-
-    /**
-     * Instanz des Telpmates
-     * @var null
-     */
-    protected $template = null;
-
-    /**
-     * Daten für das Template
-     * @var array
-     */
-    protected $data = [];
-
-    /**
-     * PdfDocument constructor.
-     * @param PdfGeneratorGeneric $pdf
-     */
-    public function __construct(PdfGeneratorGeneric $pdf = null, $pdfProtected = '')
+    public function __construct(PdfGeneratorGeneric $pdf = null, string $pdfProtected = '')
     {
         if ($pdf !== null) {
             $this->pdf = $pdf;
@@ -56,143 +38,146 @@ class PdfDocument
     }
 
     /**
-     * Setzt die Optionen für die PDF-Erzeugung.
      * @param array $options
+     * @return void
      */
-    public function setOptions(array $options)
+    public function setOptions(array $options): void
     {
         $this->pdf->setOptions($options);
     }
 
     /**
-     * Gibt die Optionen der PDF-Erzeugung zurück.
      * @return array
      */
-    public function getOptions()
+    public function getOptions(): array
     {
         return $this->pdf->getOptions();
     }
 
     /**
-     * Setzt den Pfad für die Speicherung des PDFs.
-     * @param $path
+     * @param string $path
+     * @return void
+     * @deprecated
      */
-    public function setPath($path)
+    public function setPath(string $path): void
     {
-        $this->pdf->setPath($path);
+        $this->setSavePath($path);
+    }
+
+    public function setSavePath(string $path): void
+    {
+        $this->pdf->setSavePath($path);
     }
 
     /**
-     * Gibt den Pfad für die Speicherung des PDFs zurück.
      * @return string
+     * @deprecated
      */
-    public function getPath()
+    public function getPath(): string
     {
-        return $this->pdf->getPath();
+        return $this->getSavePath();
     }
 
-    /**
-     * Setzt das Schema füe den Dateinamen des PDFs.
-     * @param $filename
-     */
-    public function setFilename($filename)
+    public function getSavePath(): string
+    {
+        return $this->pdf->getSavePath();
+    }
+
+    public function setFilename(string $filename): void
     {
         $this->pdf->setFilename($filename);
     }
 
-    /**
-     * Gibt den geparsten Dateinamen zurück.
-     * @return mixed
-     */
-    public function getFilename()
+    public function getFilename(): string
     {
         return $this->pdf->getFilename();
     }
 
     /**
-     * Setzt den Namen des Templates für das PDF.
-     * @param $tampleteName
-     */
-    public function setTemplateName($tampleteName)
-    {
-        $this->templateName = $tampleteName;
-        $template = new FrontendTemplate($tampleteName);
-        $this->setTemplate($template);
-    }
-
-    /**
-     * Gibt den Namen des Templates des PDFs zurück.
      * @return string
+     * @deprecated
      */
-    public function getTemplateName()
+    public function getTemplateName(): string
     {
         return $this->templateName;
     }
 
     /**
-     * Setzt das Template für das PDF.
-     * @param \Contao\FrontendTemplate $template
+     * @param string $templateName
+     * @deprecated
      */
-    public function setTemplate(FrontendTemplate $template)
+    public function setTemplateName(string $templateName): void
     {
-        $this->template = $template;
+        $this->templateName = $templateName;
     }
 
     /**
-     * Gibt das Template des PDFs zurück.
-     * @return null
+     * @return Template|null
      */
-    public function getTemplate()
+    public function getTemplate(): ?Template
     {
         return $this->template;
     }
 
     /**
-     * Setzt die Daten für das Template.
-     * @param array $data
+     * @param Template $template
      */
-    public function setData(array $data)
+    public function setTemplate(Template $template): void
     {
-        $this->data = $data;
+        $this->template = $template;
     }
 
     /**
-     * Gibt die Daten für des Templates zurück.
      * @return array
      */
-    public function getData()
+    public function getData(): array
     {
         return $this->data;
     }
 
     /**
-     * Bietet das PDF zum Speichern an.
+     * @param array $data
      */
-    public function save()
+    public function setData(array $data): void
     {
-        $this->generate();
-        $this->pdf->save();
+        $this->data = $data;
     }
 
     /**
-     * Sendet das PDF an den Browser.
+     * @deprecated
      */
-    public function output()
+    public function save(): void
     {
-        $this->generate();
-        $this->pdf->output();
+        $this->saveAsFile();
     }
 
     /**
-     * Erzeugt aus dem Template und den Daten das HTML für das PDF.
+     * @deprecated
      */
-    protected function generate()
+    public function output(): void
     {
-        $template = $this->getTemplate();
-        $data = $this->getData();
-        $template->setData($data);
-        $html = $template->parse();
-        $this->pdf->setHtml($html);
-        $this->pdf->setOptions($this->getData());
+        $this->streamToBrowser();
+    }
+
+    public function saveAsFile(): void
+    {
+        $this->generateHtmlFromTemplate();
+        $this->pdf->saveAsFile();
+    }
+
+    public function streamToBrowser(): void
+    {
+        $this->generateHtmlFromTemplate();
+        $this->pdf->streamToBrowser();
+    }
+    
+    private function generateHtmlFromTemplate(): void
+    {
+        if ($this->template === null) {
+            $this->template = new FrontendTemplate($this->templateName);
+        }
+        $this->template->setData($this->data);
+        $this->pdf->setHtml($this->template->parse());
+        $this->pdf->setOptions($this->data);
     }
 }

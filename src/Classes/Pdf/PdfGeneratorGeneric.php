@@ -18,167 +18,113 @@ use Contao\InsertTags;
  */
 abstract class PdfGeneratorGeneric
 {
-    /**
-     * Array mit den Optionen für die PDF-Erstellung
-     * @var array
-     */
-    protected $options = [];
+    private array $options = [];
+    private string $savePath = '';
+    private string $filename = '';
+    private string $html;
 
-    /**
-     * Speicherort für die PDF-Dateien
-     * @var string
-     */
-    protected $path = '';
-
-    /**
-     * Dateiname für die PDF-Datei
-     * @var string
-     */
-    protected $filename = '';
-
-    /**
-     * HTML-Source für das PDF.
-     * @var string
-     */
-    protected $html = '';
-
-    /**
-     * PdfGenerator constructor.
-     * @param null $html
-     */
-    protected function __construct($html = null)
-    {
-        if ($html !== null) {
-            $this->setHtml($html);
-        }
-    }
-
-    /**
-     * Setzt eine Einstellung für die PDF-Erzeugung.
-     * @param $name
-     * @param $value
-     */
-    public function set($name, $value)
-    {
-        $this->options[$name] = $value;
-    }
-
-    /**
-     * Gibt der Wert einer Einstellung zurück.
-     * @param $name
-     * @return mixed|null|string
-     */
-    public function get($name)
-    {
-        if (isset($this->options[$name])) {
-            return $this->options[$name];
-        }
-
-        return null;
-    }
-
-    /**
-     * Setzt ein Array als Einstellung für die PDF-Erzeugung.
-     * @param array $options
-     */
-    public function setOptions(array $options)
-    {
-        foreach ($options as $name => $value) {
-            $this->set($name, $value);
-        }
-    }
-
-    /**
-     * Gibt das Array mit den Einstellungen für die PDF-Erzeugung zurück.
-     * @return array
-     */
-    public function getOptions()
-    {
-        return $this->options;
-    }
-
-    /**
-     * Setzt das HTML für das PDF.
-     * @param $html
-     */
-    public function setHtml($html)
+    public function __construct(string $html = '')
     {
         $this->html = $html;
     }
 
     /**
-     * Gibt das HTML zurück.
+     * @return array
+     */
+    public function getOptions(): array
+    {
+        return $this->options;
+    }
+
+    /**
+     * @param array $options
+     */
+    public function setOptions(array $options): void
+    {
+        $this->options = $options;
+    }
+
+    /**
      * @return string
      */
-    public function getHtml()
+    public function getSavePath(): string
+    {
+        return $this->savePath;
+    }
+
+    /**
+     * @param string $savePath
+     * @return void
+     */
+    public function setSavePath(string $savePath): void
+    {
+        if (substr($savePath, 0, 1) !== DIRECTORY_SEPARATOR) {
+            $savePath = DIRECTORY_SEPARATOR . $savePath;
+        }
+        if (substr($savePath, 0, strlen(TL_ROOT)) !== TL_ROOT) {
+            $savePath = TL_ROOT . $savePath;
+        }
+        $this->savePath = $savePath;
+    }
+
+    /**
+     * @return string
+     */
+    public function getHtml(): string
     {
         return $this->html;
     }
 
     /**
-     * Setzt den Pfad für das Speichern der PDF-Dateien.
-     * @param $path
+     * @param string $html
      */
-    public function setPath($path)
+    public function setHtml(string $html): void
     {
-        $path = (substr($path, 0, 1) != DIRECTORY_SEPARATOR) ? DIRECTORY_SEPARATOR . $path : $path;
-        $path = (substr($path, 0, strlen(TL_ROOT)) != TL_ROOT) ? TL_ROOT . $path : $path;
-        $this->path = $path;
+        $this->html = $html;
     }
 
     /**
-     * Gibt den Pfaad für das Speichern der PDF-Dateien zurück.
      * @return string
      */
-    public function getPath()
-    {
-        return $this->path;
-    }
-
-    /**
-     * Gibt den Speichertort für das Pdf zurück (inkl. Pfad und Dateierweiterung).
-     * @param        $file
-     * @param string $suffix
-     */
-    public function setFilename($file, $suffix = '.pdf')
-    {
-        $file = InsertTags::replaceInsertTags($file, false);
-        $file = (substr($file, 0, 1) != DIRECTORY_SEPARATOR) ? DIRECTORY_SEPARATOR . $file : $file;
-        $file = (strtolower(substr($file, strlen($file) - 4, strlen($file))) != '.pdf') ? $file . '.pdf' : $file;
-        $this->filename = $file;
-    }
-
-    /**
-     * Gibt den geparsten Dateinamen für das Pdf zurück.
-     * @return mixed
-     */
-    public function getFilename()
+    public function getFilename(): string
     {
         return $this->filename;
+    }
+
+    /**
+     * @param string $fileName
+     * @return void
+     */
+    public function setFilename(string $fileName): void
+    {
+        $fileName = InsertTags::replaceInsertTags($fileName, false);
+        if (substr($fileName, 0, 1) !== DIRECTORY_SEPARATOR) {
+            $fileName = DIRECTORY_SEPARATOR . $fileName;
+        }
+        if (strtolower(substr($fileName, strlen($fileName) - 4, strlen($fileName))) != '.pdf') {
+            $fileName = $fileName . '.pdf' ;
+        }
+        $this->filename = $fileName;
     }
 
     /**
      * Erstellt den Speicherordner für die Pdfs, falls nötig.
      * @param $path
      */
-    protected function mkDir($path)
+    protected function mkDir($path): void
     {
-        if (! is_dir($path)) {
-            if (isset($GLOBALS['c4g']['projects']['pdf']['dompdf']['foldermode'])) {
-                $mode = $GLOBALS['c4g']['projects']['pdf']['dompdf']['foldermode'];
-            } else {
-                $mode = 0777;
-            }
+        if (!is_dir($path)) {
+            $mode = $GLOBALS['c4g']['projects']['pdf']['dompdf']['foldermode'] ?? 0777;
             mkdir($path, $mode, true);
         }
     }
 
     /**
-     * Speichert die Daten auf der Festplatte.
-     * @param        $pdfstring
+     * @param mixed $pdfstring
      * @param string $suffix
+     * @return void
      */
-    protected function saveFile($pdfstring, $suffix = '.pdf')
+    protected function saveFile($pdfstring, string $suffix = '.pdf'): void
     {
         $filename = $this->generateFilename($suffix);
         file_put_contents($filename, $pdfstring);
@@ -187,12 +133,12 @@ abstract class PdfGeneratorGeneric
     /**
      * Erzeugt einen gültigen Dateinamen.
      * @param string $suffix
-     * @return mixed|string
+     * @return string
      */
-    protected function generateFilename($suffix = '.pdf')
+    protected function generateFilename(string $suffix = '.pdf'): string
     {
         $i = 1;
-        $path = $this->getPath();
+        $path = $this->getSavePath();
         $filename = $path . $this->getFilename();
         $filename = str_replace($suffix, '', $filename);
         $this->mkDir($path);
@@ -212,33 +158,7 @@ abstract class PdfGeneratorGeneric
         return $filename . $suffix;
     }
 
-    /**
-     * Wrapper für die Erzeugung eines PDFs, dass direkt an den Browser gesendet werden soll.
-     * Ermöglicht eine einheitliche Schnittstelle bei verschiedenen PDF-Generatoren.
-     */
-    public function output()
-    {
-        $this->generateOutput();
-    }
+    abstract public function streamToBrowser();
 
-    /**
-     * Wrapper für die Erzeugung einer PDF-Datei.
-     * Ermöglicht eine einheitliche Schnittstelle bei verschiedenen PDF-Generatoren.
-     */
-    public function save()
-    {
-        $this->generateFile();
-    }
-
-    /**
-     * Muss in der Kindklasse definiert werden.
-     * Erzeugt ein PDF über den PDF-Generator und sendet es an der Browser.
-     */
-    abstract protected function generateOutput();
-
-    /**
-     * Muss in der Kindklasse definiert werden.
-     * Erzeugt ein PDF über den PDF-Generator und ruft den Speichern-Dialog auf.
-     */
-    abstract protected function generateFile();
+    abstract public function saveAsFile();
 }

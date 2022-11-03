@@ -18,12 +18,13 @@ use Dompdf\Dompdf;
  */
 class PdfGeneratorDomPdf extends PdfGeneratorGeneric
 {
-    private $pdfProtected = '';
+    private string $pdfProtected;
+
     /**
-     * PdfGeneratorDomPdf constructor.
-     * @param null $html
+     * @param $html
+     * @param string $pdfProtected
      */
-    public function __construct($html = null, $pdfProtected = '')
+    public function __construct($html = null, string $pdfProtected = '')
     {
         $this->pdfProtected = $pdfProtected;
         parent::__construct($html);
@@ -33,7 +34,7 @@ class PdfGeneratorDomPdf extends PdfGeneratorGeneric
         }
 
         if (isset($GLOBALS['c4g']['projects']['pdf']['dompdf']['defaultpath'])) {
-            $this->setPath($GLOBALS['c4g']['projects']['pdf']['dompdf']['defaultpath']);
+            $this->setSavePath($GLOBALS['c4g']['projects']['pdf']['dompdf']['defaultpath']);
         }
 
         if (isset($GLOBALS['c4g']['projects']['pdf']['dompdf']['defaultfilename'])) {
@@ -42,42 +43,34 @@ class PdfGeneratorDomPdf extends PdfGeneratorGeneric
     }
 
     /**
-     * Konviguriert den PDF-Generator und rendert das HTML als PDF.
-     * @return \Dompdf\Dompdf
+     * @return Dompdf
      */
-    protected function generate()
+    protected function generate(): Dompdf
     {
-        $dompdf = new Dompdf($this->options);
-        $dompdf->loadHtml($this->html);
+        $dompdf = new Dompdf($this->getOptions());
+        $dompdf->loadHtml($this->getHtml());
         $dompdf->render();
 
         if ($this->pdfProtected) {
-            $dompdf->get_canvas()->get_cpdf()->setEncryption($this->pdfProtected, null, ['print']);
-            $dompdf->get_canvas()->get_cpdf()->encrypted = true;
+            $dompdf->getCanvas()->get_cpdf()->setEncryption($this->pdfProtected, null, ['print']);
+            $dompdf->getCanvas()->get_cpdf()->encrypted = true;
         }
 
         return $dompdf;
     }
 
-    /**
-     * Erzeugt ein PDF und sendet es an der Browser.
-     */
-    protected function generateOutput()
+    public function streamToBrowser()
     {
         $filename = $this->getFilename();
-        $filename = str_replace('.pdf', '', $filename);   // Wird con dompdf automatisch gesetzt!
+        $filename = str_replace('.pdf', '', $filename);
         $dompdf = $this->generate();
         $dompdf->stream($filename, $this->getOptions());
     }
 
-    /**
-     * Erzeugt ein PDF und speichert es auf dem Server.
-     * @param $file
-     */
-    protected function generateFile()
+    public function saveAsFile()
     {
         $dompdf = $this->generate();
-        $pdfstring = $dompdf->output();
-        $this->saveFile($pdfstring);
+        $pdfString = $dompdf->output();
+        $this->saveFile($pdfString);
     }
 }
