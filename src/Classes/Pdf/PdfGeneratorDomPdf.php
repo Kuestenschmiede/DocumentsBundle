@@ -19,6 +19,7 @@ use Dompdf\Dompdf;
 class PdfGeneratorDomPdf extends PdfGeneratorGeneric
 {
     private string $pdfProtected;
+    private array $paper = [];
 
     /**
      * @param $html
@@ -49,6 +50,9 @@ class PdfGeneratorDomPdf extends PdfGeneratorGeneric
     {
         $dompdf = new Dompdf($this->getOptions());
         $dompdf->loadHtml($this->getHtml());
+        if (!empty($this->paper)) {
+            $dompdf->setPaper($this->paper[0], $this->paper[1]);
+        }
         $dompdf->render();
 
         if ($this->pdfProtected) {
@@ -72,5 +76,10 @@ class PdfGeneratorDomPdf extends PdfGeneratorGeneric
         $dompdf = $this->generate();
         $pdfString = $dompdf->output();
         $this->saveFile($pdfString);
+    }
+
+    public function setPaper(string $size, string $orientation): void
+    {
+        $this->paper = [$size, $orientation];
     }
 }

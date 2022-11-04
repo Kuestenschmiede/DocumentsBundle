@@ -93,6 +93,11 @@ class PdfDocument
         return $this->pdf->getFilename();
     }
 
+    public function setPaper(string $size, string $orientation): void
+    {
+        $this->pdf->setPaper($size, $orientation);
+    }
+
     /**
      * @return string
      * @deprecated

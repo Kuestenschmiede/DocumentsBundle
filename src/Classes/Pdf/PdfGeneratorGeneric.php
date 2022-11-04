@@ -161,4 +161,6 @@ abstract class PdfGeneratorGeneric
     abstract public function streamToBrowser();
 
     abstract public function saveAsFile();
+
+    abstract public function setPaper(string $size, string $orientation): void;
 }
