@@ -33,7 +33,7 @@ class PdfDocument
         if ($pdf !== null) {
             $this->pdf = $pdf;
         } else {
-            $this->pdf = new PdfGeneratorDomPdf(null, $pdfProtected);
+            $this->pdf = new PdfGeneratorDomPdf('', $pdfProtected);
         }
     }
 
@@ -170,7 +170,7 @@ class PdfDocument
         $this->generateHtmlFromTemplate();
         $this->pdf->streamToBrowser();
     }
-    
+
     private function generateHtmlFromTemplate(): void
     {
         if ($this->template === null) {
