@@ -22,10 +22,10 @@
     "issues": "https://github.com/Kuestenschmiede/DocumentsBundle/issues"
   },
   "require": {
-    "php": "^7.4 || ^8.0",
-    "contao/core-bundle": "^4.9",
-    "con4gis/core": "^6.0 || ^7.0",
-    "dompdf/dompdf": "^2.0.3"
+    "php": "^8.0",
+    "contao/core-bundle": "^4.13 || ^5.0",
+    "con4gis/core": "^7.0",
+    "dompdf/dompdf": "^2.0"
   },
   "conflict": {
     "contao/core": "*",
@@ -51,7 +51,7 @@
   "extra": {
     "contao-manager-plugin": "con4gis\\DocumentsBundle\\ContaoManager\\Plugin",
     "branch-alias": {
-      "dev-main": "1.5.x-dev"
+      "dev-main": "1.6.x-dev"
     }
   }
 }

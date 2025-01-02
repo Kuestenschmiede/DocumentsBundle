@@ -2,10 +2,10 @@
 /*
  * This file is part of con4gis, the gis-kit for Contao CMS.
  * @package con4gis
- * @version 8
+ * @version 10
  * @author con4gis contributors (see "authors.txt")
  * @license LGPL-3.0-or-later
- * @copyright (c) 2010-2022, by Küstenschmiede GmbH Software & Design
+ * @copyright (c) 2010-2025, by Küstenschmiede GmbH Software & Design
  * @link https://www.con4gis.org
  */
 namespace con4gis\DocumentsBundle\Classes\Pdf;
@@ -58,11 +58,12 @@ abstract class PdfGeneratorGeneric
      */
     public function setSavePath(string $savePath): void
     {
+        $rootDir = System::getContainer()->getParameter('kernel.project_dir');
         if (substr($savePath, 0, 1) !== DIRECTORY_SEPARATOR) {
             $savePath = DIRECTORY_SEPARATOR . $savePath;
         }
-        if (substr($savePath, 0, strlen(TL_ROOT)) !== TL_ROOT) {
-            $savePath = TL_ROOT . $savePath;
+        if (substr($savePath, 0, strlen($rootDir)) !== $rootDir) {
+            $savePath = $rootDir . $savePath;
         }
         $this->savePath = $savePath;
     }
