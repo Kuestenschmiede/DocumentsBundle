@@ -22,9 +22,9 @@
     "issues": "https://github.com/Kuestenschmiede/DocumentsBundle/issues"
   },
   "require": {
-    "php": "^8.0",
-    "contao/core-bundle": "^4.13 || ^5.0",
-    "con4gis/core": "^7.0",
+    "php": "^8.1",
+    "contao/core-bundle": "^4.13 || ^5.3",
+    "con4gis/core": "^7.2",
     "dompdf/dompdf": "^2.0"
   },
   "conflict": {
