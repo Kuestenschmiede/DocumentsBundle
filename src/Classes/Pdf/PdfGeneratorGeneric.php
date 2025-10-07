@@ -10,6 +10,7 @@
  */
 namespace con4gis\DocumentsBundle\Classes\Pdf;
 
+use con4gis\CoreBundle\Classes\C4GUtils;
 use Contao\InsertTags;
 
 /**
@@ -58,7 +59,7 @@ abstract class PdfGeneratorGeneric
      */
     public function setSavePath(string $savePath): void
     {
-        $rootDir = System::getContainer()->getParameter('kernel.project_dir');
+        $rootDir = \Contao\System::getContainer()->getParameter('kernel.project_dir');
         if (substr($savePath, 0, 1) !== DIRECTORY_SEPARATOR) {
             $savePath = DIRECTORY_SEPARATOR . $savePath;
         }
@@ -98,7 +99,7 @@ abstract class PdfGeneratorGeneric
      */
     public function setFilename(string $fileName): void
     {
-        $fileName = InsertTags::replaceInsertTags($fileName, false);
+        $fileName = C4GUtils::replaceInsertTags($fileName);
         if (substr($fileName, 0, 1) !== DIRECTORY_SEPARATOR) {
             $fileName = DIRECTORY_SEPARATOR . $fileName;
         }
