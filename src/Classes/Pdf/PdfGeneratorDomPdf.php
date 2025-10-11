@@ -30,8 +30,8 @@ class PdfGeneratorDomPdf extends PdfGeneratorGeneric
         $this->pdfProtected = $pdfProtected;
         parent::__construct($html);
 
-        if (isset($GLOBALS['c4g']['projects']['pdf']['dompdf']['deafultoptions'])) {
-            $this->setOptions($GLOBALS['c4g']['projects']['pdf']['dompdf']['deafultoptions']);
+        if (isset($GLOBALS['c4g']['projects']['pdf']['dompdf']['defaultoptions'])) {
+            $this->setOptions($GLOBALS['c4g']['projects']['pdf']['dompdf']['defaultoptions']);
         }
 
         if (isset($GLOBALS['c4g']['projects']['pdf']['dompdf']['defaultpath'])) {
