@@ -47,12 +47,27 @@ class PdfGeneratorDomPdf extends PdfGeneratorGeneric
      */
     protected function generate(): Dompdf
     {
-        $dompdf = new Dompdf($this->getOptions());
+        $options = $this->getOptions();
+        $options['isPhpEnabled'] = true;
+        $dompdf = new Dompdf($options);
         $dompdf->loadHtml($this->getHtml());
         if (!empty($this->paper)) {
             $dompdf->setPaper($this->paper[0], $this->paper[1]);
         }
         $dompdf->render();
+
+        $canvas = $dompdf->getCanvas();
+        if ($canvas) {
+            $canvas->page_script(function ($pageNumber, $pageCount, $canvas, $fontMetrics) {
+                $text = ($GLOBALS['TL_LANG']['fe_c4g_reservation']['page'] ?: 'Seite') . " $pageNumber " . ($GLOBALS['TL_LANG']['fe_c4g_reservation']['page_of'] ?: 'von') . " $pageCount";
+                $font = $fontMetrics->getFont("Verdana");
+                $size = 10;
+                $width = $fontMetrics->get_text_width($text, $font, $size);
+                $x = ($canvas->get_width() - $width) / 2;
+                $y = $canvas->get_height() - 35;
+                $canvas->text($x, $y, $text, $font, $size);
+            });
+        }
 
         if ($this->pdfProtected) {
             $dompdf->getCanvas()->get_cpdf()->setEncryption($this->pdfProtected, null, ['print']);
