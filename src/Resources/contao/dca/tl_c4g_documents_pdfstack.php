@@ -65,12 +65,12 @@ $GLOBALS['TL_DCA'][$strName] = array
 				'label'               => &$GLOBALS['TL_LANG']['MSC']['all'],
 				'href'                => 'act=select',
 				'class'               => 'header_edit_all',
-				'attributes'          => 'onclick="Backend.getScrollOffset();" accesskey="e"'
+				'attributes'          => 'onclick="Backend.getScrollOffset()" accesskey="e"'
 			],
             'back' => [
                 'href'                => 'key=back',
                 'class'               => 'header_back',
-                'button_callback'     => ['\con4gis\CoreBundle\Classes\Helper\DcaHelper', 'back'],
+                'button_callback'     => ['\con4gis\CoreBundle\Classes\Helper\DcaHelper','back'],
                 'icon'                => 'back.svg',
                 'label'               => &$GLOBALS['TL_LANG']['MSC']['backBT'],
             ],
@@ -121,7 +121,7 @@ $GLOBALS['TL_DCA'][$strName] = array
 	'palettes' => array
 	(
 		'__selector__'                => array(''),
-		'default'                     => '{title_legend},data;'
+		'default'                     => '{title_legend},data'
 	),
 
 	// Subpalettes
